@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.note.dao.NotebookDao">
+	<select id="findNotebookByUserId" resultType="java.util.Map" parameterType="string">
+		select cn_notebook_id as id,
+				cn_notebook_name as name
+				from cn_notebook  
+				where cn_user_id=#{userId } 
+	</select>
+	<insert id="addNotebook" parameterType="cn.tedu.note.entity.Notebook">
+		insert into cn_notebook
+		(cn_notebook_id,
+		cn_user_id,
+		cn_notebook_type_id,
+		cn_notebook_name,
+		cn_notebook_desc,
+		cn_notebook_createtime)
+		values
+		(#{notebookId},
+		#{userId},
+		#{notebookTypeId},
+		#{notebookName},
+		#{notebookDesc},
+		#{notebookCreateTime})
+	</insert>
+	<delete id="deleteNotebook" parameterType="string">
+		delete from cn_notebook where cn_notebook_id=#{notebookId}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
